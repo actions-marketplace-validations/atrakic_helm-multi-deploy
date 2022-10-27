@@ -30,7 +30,6 @@ If you define the input `environment-slug`, then `values-<env>.yaml` will be app
 
 | **Input**             | **Required** | **Default** | **Description**                                                                                        |
 |-----------------------|--------------|-------------|--------------------------------------------------------------------------------------------------------|
-| cluster-name          | yes          | N/A         | Cluster name                                                                                           |
 | image-tag             | yes          | N/A         | Image tag to use in each deployment.                                                                   |
 | k8s-namespace         | yes          | N/A         | Deployment namespace in kubernetes.                                                                    |
 | environment-slug      | no           | N/A         | Short name of the deployment environment (dev, prod, etc). Set this if you have a `values-<env>.yaml`. |
@@ -52,7 +51,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: atrakic/helm-multi-deploy@main
         with:
-          cluster-name: primary
           environment-slug: dev
           k8s-namespace: my-dev-ns
           image-tag: my-dev-image-tag
