@@ -2,6 +2,8 @@
 
 cd deployment || exit 1
 
+kubectl config view
+
 # Creating namespace if necessary
 kubectl create namespace "$HELM_K8S_NAMESPACE" || true
 
