@@ -28,4 +28,3 @@ jobs:
         docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:${TAG}
         docker image ls ${{ env.IMAGE_NAME }}:${TAG}
         docker run -i --rm --entrypoint "bash" -v ${{ github.workspace }}:/deployment ${{ env.IMAGE_NAME }}:${TAG} -c "helm version"
-        docker run -i --rm --entrypoint "bash" -v ${{ github.workspace }}:/deployment ${{ env.IMAGE_NAME }}:${TAG} -c "kubectl version"
