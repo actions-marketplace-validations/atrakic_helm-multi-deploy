@@ -14,13 +14,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag ${{ github.repository }}:$(date +%s)
         docker image ls ${{ github.repository }}:$(date +%s)
+
     - name: Test the Docker image
       run: |
-        docker run -it --rm  --entrypoint "bash" ${{ github.repository }}:$(date +%s) -c "helm version"
-        docker run -it --rm  --entrypoint "bash" ${{ github.repository }}:$(date +%s) -c "kubectl version"
+        docker run -i --rm --entrypoint "bash" -v $(pwd):/deployment ${{ github.repository }}:$(date +%s) -c "helm version"
+        docker run -i --rm --entrypoint "bash" -v $(pwd):/deployment ${{ github.repository }}:$(date +%s) -c "kubectl version"
