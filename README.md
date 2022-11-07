@@ -1,5 +1,8 @@
 # helm-multi-deploy
 
+[![ci](https://github.com/atrakic/helm-multi-deploy/actions/workflows/docker-ci.yaml/badge.svg)](https://github.com/atrakic/helm-multi-deploy/actions/workflows/docker-ci.yaml)
+[![release](https://github.com/atrakic/helm-multi-deploy/actions/workflows/release.yaml/badge.svg)](https://github.com/atrakic/helm-multi-deploy/actions/workflows/release.yaml)
+
 This GitHub Action will deploy all Helm chart folders inside a 'deployment' folder in your repository root. 
 Useful for deploying multiple services that are in separate charts. For example:
 
