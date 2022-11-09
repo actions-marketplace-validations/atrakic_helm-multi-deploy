@@ -2,13 +2,17 @@
 
 cd deployment || exit 1
 
-kubectl config view
+kubectl config view --minify
+kubectl config current-context
 
 # Creating namespace if necessary
 kubectl create namespace "$HELM_K8S_NAMESPACE" || true
 
 # Setup our helm args
-export HELM_EXTRA_ARGS="$HELM_EXTRA_ARGS --set image.tag=$HELM_IMAGE_TAG --set global.image.tag=$HELM_IMAGE_TAG --set global.namespace=$HELM_K8S_NAMESPACE";
+export HELM_EXTRA_ARGS="$HELM_EXTRA_ARGS \
+  --set image.tag=$HELM_IMAGE_TAG \
+  --set global.image.tag=$HELM_IMAGE_TAG \
+  --set global.namespace=$HELM_K8S_NAMESPACE";
 
 # Iterate through all our deployments
 for CURRENT_HELM_CHART in $(ls -d */ | grep -Evi "helm_value_files|templates" | tr '/' ' '); do
