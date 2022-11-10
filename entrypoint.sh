@@ -1,5 +1,5 @@
 #!/bin/sh
-env
+#env
 
 mkdir -p "$HOME"/.kube
 echo "$INPUT_KUBECONFIG" | base64 -d > "$HOME"/.kube/config
