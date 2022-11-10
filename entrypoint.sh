@@ -1,9 +1,12 @@
 #!/bin/sh
 
-cd deployment || exit 1
+mkdir -p "$HOME"/.kube
+echo "$INPUT_KUBECONFIG" | base64 -d > "$HOME"/.kube/config
 
 kubectl config view --minify
 kubectl config current-context
+
+cd deployment || exit 1
 
 # Creating namespace if necessary
 kubectl create namespace "$HELM_K8S_NAMESPACE" || true
